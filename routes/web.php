@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Store url
+Route::controller(StoreController::class)->group(function () {
+    Route::get('/store/{url}', 'show');
+    //create a stor
+    Route::get('/createstore', 'create')->name('create-store');
+    Route::post('/create-store', 'store')->name('save-store');
+    //edit & update store
+    Route::get('/storeedit', 'edit');
+    Route::put('/update-store', 'update')->name('update-store');
+    //dashbord
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+});
