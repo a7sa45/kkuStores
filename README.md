@@ -1,12 +1,12 @@
 <p align="center"></p>
 
 <p align="center">
-##FORK Team
+## FORK
 </p>
 
 ## About Fork Team
 
-Fork is programer Theam in KKU Bootamp:
+<p align="right">فريق برمجي مشارك في معسكر مهارات المستقبل بجامعة الملك خالد</p>
 
 - Abdulhadi.
 - Shaden.
