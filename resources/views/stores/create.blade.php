@@ -26,7 +26,7 @@
                             <div class="mb-3">
                                 <div class="input-group" style="text-align: left">
                                 <input id="url" style="text-align: left; border-top-left-radius:0; border-bottom-left-radius:0" placeholder="URL" type="text" class="form-control rounded-end @error('url') is-invalid @enderror" name="url" value="{{ old('url') }}" required autocomplete="url" autofocus>
-                                <span class="input-group-text rounded-start rounded-end-0" style="text-align: left; border-top-right-radius:0; border-bottom-right-radius:0" id="basic-addon3">$/https://store.edu.sa</span>
+                                <span class="input-group-text rounded-start rounded-end-0" style="text-align: left; border-top-right-radius:0; border-bottom-right-radius:0" id="basic-addon3">/https://store.edu.sa/store</span>
                                 </div>
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">

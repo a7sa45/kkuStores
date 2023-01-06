@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,11 @@ Route::controller(StoreController::class)->group(function () {
     Route::put('/update-store', 'update')->name('update-store');
     //dashbord
     Route::get('/dashboard', 'dashboard')->name('dashboard');
+});
+
+//Product url
+Route::controller(ProductController::class)->group(function () {
+    //create a Product
+    Route::get('/dashboard/createproduct', 'create')->name('create-product');
+    Route::post('/create-product', 'store')->name('save-product');
 });

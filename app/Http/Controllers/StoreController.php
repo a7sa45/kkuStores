@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -54,7 +55,7 @@ class StoreController extends Controller
         $store = new Store();
         $data = request()->validate([
             'title'  => ['required', 'string'],
-            'url'    => ['required', 'string'],   
+            'url'    => ['required', 'unique:stores', 'string'],   
         ]);
 
         $store->title = $data['title'];
@@ -74,11 +75,12 @@ class StoreController extends Controller
     public function show($url)
     {
         $store = Store::where('url', $url)->first();
+        $products = Product::where('store_id', $store->id)->get();
         if($store == null)
         {
             abort(404);
         }
-        return view('stores.show', ['store' => $store]);
+        return view('stores.show', ['store' => $store, 'products' => $products]);
     }
 
     /**
