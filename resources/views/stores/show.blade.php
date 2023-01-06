@@ -1,5 +1,40 @@
 @extends('layouts.app')
 @section('title'){{ $store->title }}@endsection
+@section('adminnav')
+@auth
+@if(auth()->user()->store && auth()->user()->store->id == $store->id)
+<div class="px-3 py-2 text-bg-dark">
+    <div class="container" style="align-items: center">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+          <img src="/images/logos/{{ $store->logo }}" alt="" width="40" height="32">
+        </a>
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+                <a href="/home" class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
+                الرئيسية
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard" class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+                الادارة
+                </a>
+            </li>
+            <li>
+                <a href="/store/{{ $store->url }}" class="nav-link  text-secondary">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+                  المتجر
+                </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+</div>
+@endif
+@endauth  
+@endsection
 @section('cart')
 <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">

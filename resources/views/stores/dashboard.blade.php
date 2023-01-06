@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ar" dir="rtl">
   <head>
@@ -25,7 +24,7 @@
 <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
 <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#712cf9">
-
+<script src="https://kit.fontawesome.com/328124be7f.js" crossorigin="anonymous"></script>
 
     <style>
       .bd-placeholder-img {
@@ -84,8 +83,9 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.3/examples/dashboard/dashboard.rtl.css" rel="stylesheet">
   </head>
-  <body>
-    
+<body>
+
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">{{ auth()->user()->store->title }}</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="عرض/إخفاء لوحة التنقل">
@@ -94,7 +94,7 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="بحث" aria-label="بحث">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="/${{ auth()->user()->store->url }}">الانتقال الى المتجر</a>
+      <a class="nav-link px-3" href="/store/{{ auth()->user()->store->url }}">الانتقال الى المتجر</a>
     </div>
   </div>
 </header>
@@ -185,10 +185,10 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">مشاركة</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">تصدير</button>
           </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            هذا الأسبوع
-          </button>
+          <a href="/storeedit" type="button" class="btn btn-sm btn-outline-secondary">
+            <i class="fa-solid fa-gear"></i>
+            تعديل اعدادات المتجر
+          </a>
         </div>
       </div>
 
