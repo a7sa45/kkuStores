@@ -15,7 +15,7 @@ class StoreController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'edit', 'dashboard']);
+        $this->middleware('auth')->only(['create', 'edit', 'dashboard_index']);
         $this->middleware('hasstore')->only('dashboard');
     }
 
