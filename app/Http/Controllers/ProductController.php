@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['create', 'edit',]);
-        $this->middleware('hasstore');
+        $this->middleware('hasstore')->except(['show']);
     }
 
     public function index()
@@ -70,9 +71,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $url,  $product_id)
     {
-        //
+        $store = Store::where('url', $url)->first();
+        $product = Product::where('id', $product_id)->first();
+        $products = Product::where('store_id', $store->id)->limit(4)->get();
+        return view('products.show', ['product' => $product, 'store' => $store, 'products' => $products]);
     }
 
     /**

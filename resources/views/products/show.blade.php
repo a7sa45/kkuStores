@@ -42,36 +42,52 @@
 <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
         السلة
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0<i class="fa-solid fa-cart-shopping"></i></span>
     </button>
 </form>
 @endsection
 @endif
 @endauth
 @section('content')
-<div class="px-4 py-5 text-center">
-    <img class="d-block mx-auto mb-4"
-    @if($store->logo)
-        src="/images/logos/{{ $store->logo }}"
-    @else
-        src="https://cdn-icons-png.flaticon.com/512/9326/9326748.png"
-    @endif
-    alt="" width="72" height="72">
-    <h1 class="display-5 fw-bold">{{ $store->title }}</h1>
-    <div class="col-lg-6 mx-auto">
-        @if($store->about)
-            <p class="lead mb-4">{{ $store->about }}</p>
-        @else
-            <p class="lead mb-4">https://stores.kku.edu.sa/store/{{ $store->url }}</p>
-        @endif
+<section class="py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" style="object-fit: cover; object-position: bottom;" src="/images/products/{{ $product->image }}" alt="product image" height="700" width="600"></div>
+            <div class="col-md-6">
+                <div class="small mb-1">SKU: {{ $product->store->title }}</div>
+                <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
+                <div class="fs-5 mb-5">
+                    <span>SR {{ $product->price }}</span>
+                </div>
+                <p class="lead">{{ $product->discription }}</p>
+                @auth
+                @else
+                <a href="{{ route('login') }}" class="btn btn-outline-warning flex-shrink-0" type="button">
+                    <i class="bi-cart-fill me-1"></i>
+                     قم بتسجيل الدخول لتتمكن من الشراء
+                </a>
+                @endauth
+                @auth
+                @if(auth()->user()->store && auth()->user()->store->id == $store->id)
+                @else
+                <div class="d-flex">
+                    <input class="form-control text-center ms-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        <i class="bi-cart-fill me-1"></i>
+                        إضـــافة للعربة
+                    </button>
+                </div>
+                @endif
+                @endauth
+            </div>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @forelse ($products as $product)
+</section>
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">منتجات قد تعجبك</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @forelse ($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
@@ -93,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                @empty
+            @empty
                     <div class=" card-body cardbody-color">
                         <div class="text-center">
                             <img src="https://cdn-icons-png.flaticon.com/512/2523/2523206.png" class="img-fluid profile-image-pic  my-3" width="200px" alt="create">
@@ -102,43 +118,10 @@
                             <h3>لاتوجد منتجات بعد</h3>
                         </div>
                     </div> 
-                @endforelse
-                
-
-                {{--<div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Sale badge-->
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                        <!-- Product image-->
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Special Item</h5>
-                                <!-- Product reviews-->
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill">ss</div>
-                                    <div class="bi-star-fill">ss</div>
-                                    <div class="bi-star-fill">ss</div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill">ss</div>
-                                </div>
-                                <!-- Product price-->
-                                <span class="text-muted text-decoration-line-through">$20.00</span>
-                                $18.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                        </div>
-                    </div>
-                </div>--}}
-            </div>
+            @endforelse
         </div>
     </div>
-</div>
+</section>
 @endsection
 @section('footer')
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
