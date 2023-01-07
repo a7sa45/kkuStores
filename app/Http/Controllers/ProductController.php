@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products/create');
+        return view('products.create');
     }
 
     /**
@@ -81,9 +81,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $product_id)
     {
-        //
+        $product = Product::where('id', $product_id)->first();
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
@@ -95,7 +96,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product_id = $request->product_id;
+        $product = Product::where('id', $product_id)->first();
+        $data = request()->validate([
+            'name'  => ['required', 'string'],
+            'price'    => ['required', 'numeric'],
+            'discription'  => ['required', 'string'],   
+        ]);
+        if($request->has('image'))
+        {
+            $image = $request->file('image');
+            $image_name = $image->hashName();
+            $image->move(public_path('images/products'), $image_name);
+        }
+
+        $product->name = $data['name'];
+        $product->price = $data['price'];
+        $product->discription = $data['discription'];
+        $product->image = $image_name;
+        $product->save();
+
+        return redirect('/store/'.auth()->user()->store->url)->with('success', 'تم إضافة المنتج بنجاح !');
     }
 
     /**

@@ -15,7 +15,7 @@ class StoreController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'edit',]);
+        $this->middleware('auth')->only(['create', 'edit', 'dashboard']);
         $this->middleware('hasstore')->only('dashboard');
     }
 
@@ -39,9 +39,16 @@ class StoreController extends Controller
         }
     }
 
-    public function dashboard()
+    public function dashboard_index()
     {
-        return view('stores.dashboard');
+        return view('dashboard.index');
+    }
+
+    public function dashboard_products()
+    {
+        //$store = Store::where('url', $url)->first();
+        $products = Product::where('store_id', auth()->user()->store->id)->get();
+        return view('dashboard.products', ['products' => $products]);
     }
 
     /**

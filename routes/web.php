@@ -33,8 +33,9 @@ Route::controller(StoreController::class)->group(function () {
     //edit & update store
     Route::get('/storeedit', 'edit');
     Route::put('/update-store', 'update')->name('update-store');
-    //dashbord
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
+    //dashboard
+    Route::get('/dashboard', 'dashboard_index')->name('dashboard');
+    Route::get('/dashboard/products', 'dashboard_products')->name('dashboard_products');
 });
 
 //Product url
@@ -42,4 +43,7 @@ Route::controller(ProductController::class)->group(function () {
     //create a Product
     Route::get('/dashboard/createproduct', 'create')->name('create-product');
     Route::post('/create-product', 'store')->name('save-product');
+    //update a Product
+    Route::get('/dashboard/product/{product_id}/edit', 'edit')->name('edit-product');
+    Route::put('/update-product', 'update')->name('update-product');
 });

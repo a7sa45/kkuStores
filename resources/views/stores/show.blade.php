@@ -35,7 +35,9 @@
 @endif
 @endauth  
 @endsection
-@if(auth()->user()->store && !auth()->user()->store->id == $store->id)
+@auth
+@if(auth()->user()->store && auth()->user()->store->id == $store->id)
+@else
 @section('cart')
 <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
@@ -46,6 +48,7 @@
 </form>
 @endsection
 @endif
+@endauth
 @section('content')
 <div class="px-4 py-5 text-center">
     <img class="d-block mx-auto mb-4"
@@ -147,30 +150,24 @@
       <div class="col-6 col-md">
         <h5>حسابات التواصل</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+            <div class="mb-1">
+                <a class="link-secondary text-decoration-none" href="https://twitter.com/{{ $store->twitter }}"><i class="fa-brands fa-square-twitter fa-xl"></i></a>
+                <a class="link-secondary text-decoration-none" href="https://www.instagram.com/{{ $store->instagram }}"><i class="fa-brands fa-square-instagram fa-xl"></i></a>
+                <a class="link-secondary text-decoration-none" href="https://www.snapchat.com/add/{{ $store->snapchat }}"><i class="fa-brands fa-square-snapchat fa-xl"></i></a>
+                <a class="link-secondary text-decoration-none" href="#"><i class="fa-brands fa-square-whatsapp fa-xl"></i></a>
+            </div>
         </ul>
       </div>
       <div class="col-6 col-md">
         <h5>رقم الاتصال</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">{{ $store->whatsapp }}</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
         <h5>عنا</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+          <div class="mb-1">{{ $store->about }}</div>
         </ul>
       </div>
     </div>
