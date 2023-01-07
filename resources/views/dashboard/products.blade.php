@@ -37,11 +37,15 @@
                       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                           <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">عرض المنتج</a></div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='/posts/';">المزيد</button>
+                      <div class="btn-group m-1">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='/posts/';"><i class="fa-solid fa-pen-to-square"></i>تعديل</button>
                         @auth
-                            
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='/posts//edit';">تعديل</button>
+                        <form class="btn-group" action="{{ route('delete-product') }}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <input type="hidden" name="product_id" value="{{ $product->id }}">
+                          <button type="submit" class="btn btn-sm btn-outline-secondary text-danger"><i class="fa-solid fa-trash"></i>حذف</button>
+                        </form>
                         @endauth
                       </div>
                   </div>

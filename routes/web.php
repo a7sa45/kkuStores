@@ -46,4 +46,5 @@ Route::controller(ProductController::class)->group(function () {
     //update a Product
     Route::get('/dashboard/product/{product_id}/edit', 'edit')->name('edit-product');
     Route::put('/update-product', 'update')->name('update-product');
+    Route::delete('/delete-product', 'destroy')->name('delete-product');
 });

@@ -125,8 +125,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request,Product $product)
     {
-        //
+        if($product == null)
+        {
+            abort(404);
+        }
+        $product_id = $request->product_id;
+        $product = Product::where('id', $product_id)->first();
+        $product->delete();
+        return redirect('/store/'.auth()->user()->store->url)->with('warning', 'تم حذف المنتج بنجاح !');
     }
 }
