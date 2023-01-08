@@ -86,7 +86,8 @@
                       <h5 class="mb-0"><i class="fa-solid fa-cart-shopping"></i> عربة التسوق</h5>
                     </div>
                     <div class="card-body">
-                      <!-- Single item -->
+                      @forelse ($items as $item)
+                        <!-- Single item -->
                       <div class="rounded-3 mb-4">
                         <div class="card-body ">
                           <div class="row d-flex justify-content-between align-items-center">
@@ -94,7 +95,7 @@
                               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
-                              <p class="lead fw-normal mb-2">Basic T-shirt</p>
+                              <p class="lead fw-normal mb-2">{{ $item->name }}</p>
                               <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -110,42 +111,18 @@
                         </div>
                       </div>
                       <!-- Single item -->
-          
                       <hr class="my-4" />
-          
-                      <!-- Single item -->
-                      <div class="rounded-3 mb-4">
-                        <div class="card-body ">
-                          <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                              <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                              <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                              متجر المكتبة المركزية
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                              <h5 class="mb-0">$499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                              <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg" aria-hidden="true"></i></a>
-                            </div>
-                          </div>
+                      <div class="mt-5">
+                        <p><strong>مجموع العربة: 500sr</strong></p>
+                        <div class="d-grid gap-2">
+                          <button type="button" class="btn btn-info btn-lg btn-block">
+                            <i class="fa-solid fa-credit-card"></i> اتمام الشراء
+                        </button>
                         </div>
                       </div>
-                      <hr class="my-4" />
-                          <div class="mt-5">
-                            <p><strong>مجموع العربة: 500sr</strong></p>
-                            <div class="d-grid gap-2">
-                              <button type="button" class="btn btn-info btn-lg btn-block">
-                                <i class="fa-solid fa-credit-card"></i> اتمام الشراء
-                            </button>
-                            </div>
-                          </div>
-                      <!-- Single item -->
+                      @empty
+                          <p>لاتوجد منتجات</p>
+                      @endforelse
                     </div>
                   </div>
                   

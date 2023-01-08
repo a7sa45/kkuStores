@@ -108,7 +108,25 @@
                 </div>
             </div>
         </nav>
-
+        
+        {{-- Message success --}}
+        @if (Session::has('success'))
+        <div class="container my-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>{{ session('success') }}</strong>
+            </div>
+        </div>
+        @endif
+        {{-- Message warning --}}
+        @if (Session::has('warning'))
+        <div class="container my-3">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>{{ session('warning') }}</strong>
+            </div>
+        </div>
+        @endif
         <main class="">
             @yield('content')
         </main>

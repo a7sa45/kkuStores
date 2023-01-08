@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     { 
-        return view('home');
+        $items = \Cart::session(auth()->user()->id)->getContent();
+        return view('home', ['items' => $items]);
+    }
+    public function allstores()
+    { 
+        $stores = Store::all();
+        return view('allstores', ['stores' => $stores]);
+    }
+    public function allproducts()
+    { 
+        $products = Product::all();
+        return view('allproducts', ['products' => $products]);
     }
 
     

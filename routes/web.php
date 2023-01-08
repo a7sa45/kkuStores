@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/stores', [App\Http\Controllers\HomeController::class, 'allstores'])->name('allstores');
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'allproducts'])->name('allproducts');
 
 
 //Store url
@@ -49,3 +52,13 @@ Route::controller(ProductController::class)->group(function () {
     Route::put('/update-product', 'update')->name('update-product');
     Route::delete('/delete-product', 'destroy')->name('delete-product');
 });
+
+
+//Cart urls
+Route::controller(CartController::class)->group(function () {
+    Route::post('cart', 'addToCart')->name('cart.store');
+    Route::post('update-cart', 'updateCart')->name('cart.update');
+    Route::post('remove', 'removeCart')->name('cart.remove');
+    Route::post('clear', 'clearAllCart')->name('cart.clear');
+});
+

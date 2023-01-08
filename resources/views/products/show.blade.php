@@ -7,7 +7,7 @@
     <div class="container" style="align-items: center">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-          <img src="/images/logos/{{ $store->logo }}" alt="" width="40" height="32">
+          <img src="/images/logos/{{ $store->logo }}" alt="" width="32" height="32">
         </a>
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
@@ -42,7 +42,7 @@
 <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
         السلة
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0<i class="fa-solid fa-cart-shopping"></i></span>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ \Cart::session(auth()->user()->id)->getContent()->count() }}<i class="fa-solid fa-cart-shopping"></i></span>
     </button>
 </form>
 @endsection
@@ -52,7 +52,7 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" style="object-fit: cover; object-position: bottom;" src="/images/products/{{ $product->image }}" alt="product image" height="700" width="600"></div>
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"  src="/images/products/{{ $product->image }}" alt="product image" height="300" width="400"></div>
             <div class="col-md-6">
                 <div class="small mb-1">SKU: {{ $product->store->title }}</div>
                 <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
@@ -61,6 +61,9 @@
                 </div>
                 <p class="lead">{{ $product->discription }}</p>
                 @auth
+                    @if(\Cart::session(auth()->user()->id)->getContent()->where('id', $product->id))
+                       هذا  المنتج موجود مسبقا 
+                    @endif
                 @else
                 <a href="{{ route('login') }}" class="btn btn-outline-warning flex-shrink-0" type="button">
                     <i class="bi-cart-fill me-1"></i>
@@ -70,13 +73,17 @@
                 @auth
                 @if(auth()->user()->store && auth()->user()->store->id == $store->id)
                 @else
-                <div class="d-flex">
-                    <input class="form-control text-center ms-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        إضـــافة للعربة
-                    </button>
-                </div>
+                <form action="{{ route('cart.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            إضـــافة للعربة
+                        </button>
+                    </div>
+                </form>
+                
                 @endif
                 @endauth
             </div>

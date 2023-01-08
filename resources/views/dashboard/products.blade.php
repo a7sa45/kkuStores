@@ -38,7 +38,7 @@
                           <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">عرض المنتج</a></div>
                       </div>
                       <div class="btn-group m-1">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='/posts/';"><i class="fa-solid fa-pen-to-square"></i>تعديل</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href='/dashboard/product/{{ $product->id }}/edit';"><i class="fa-solid fa-pen-to-square"></i>تعديل</button>
                         @auth
                         <form class="btn-group" action="{{ route('delete-product') }}" method="post">
                           @csrf

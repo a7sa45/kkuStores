@@ -42,8 +42,7 @@
 <form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
         السلة
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::getTotalQuantity()}}<i class="fa-solid fa-cart-shopping"></i></span>
     </button>
 </form>
 @endsection
