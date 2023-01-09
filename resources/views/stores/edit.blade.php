@@ -7,7 +7,13 @@
             <div class="col-md-6">
                 <div class="card my-5 card-body cardbody-color p-lg-5">
                     <div class="text-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2653/2653627.png" class="img-fluid profile-image-pic  my-3"
+                        <img 
+                        @if($store->logo)
+                        src="/images/logos/{{ $store->logo }}"
+                        @else
+                        src="https://cdn-icons-png.flaticon.com/512/2653/2653627.png"
+                        @endif
+                        class="img-fluid profile-image-pic  my-3"
                         width="200px" alt="create">
                     </div>
     
@@ -16,7 +22,7 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <input id="title" placeholder="{{ $store->title }}" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                <input id="title" placeholder="{{ $store->title }}" value="{{ $store->title }}" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -37,11 +43,11 @@
                             <div class="mb-3">
                                 <textarea id="about"
                                 @if($store->about)
-                                    placeholder="{{ $store->about }}"
+                                    value="{{ $store->about }}"
                                 @else
                                     placeholder="وصف المتجر"
                                 @endif
-                                type="text" class="form-control @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" required autocomplete="about" autofocus></textarea>
+                                type="text" class="form-control @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" required autocomplete="about" autofocus>{{ $store->about }}</textarea>
                                 @error('about')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -52,7 +58,7 @@
                                 <div class="input-group" style="text-align: left">
                                 <input id="twitter" style="text-align: left; border-top-left-radius:0; border-bottom-left-radius:0" 
                                 @if($store->twitter)
-                                    placeholder="{{ $store->twitter }}"
+                                    value="{{ $store->twitter }}"
                                 @else
                                     placeholder="username"
                                 @endif
@@ -69,7 +75,7 @@
                                 <div class="input-group" style="text-align: left">
                                 <input id="instagram" style="text-align: left; border-top-left-radius:0; border-bottom-left-radius:0"
                                 @if($store->instagram)
-                                    placeholder="{{ $store->instagram }}"
+                                    value="{{ $store->instagram }}"
                                 @else
                                     placeholder="username"
                                 @endif
@@ -86,7 +92,7 @@
                                 <div class="input-group" style="text-align: left">
                                 <input id="snapchat" style="text-align: left; border-top-left-radius:0; border-bottom-left-radius:0"
                                 @if($store->snapchat)
-                                    placeholder="{{ $store->snapchat }}"
+                                    value="{{ $store->snapchat }}"
                                 @else 
                                     placeholder="username"
                                 @endif 
@@ -103,7 +109,7 @@
                                 <div class="input-group" style="text-align: left">
                                 <input id="whatsapp" style="text-align: left; border-top-left-radius:0; border-bottom-left-radius:0"
                                 @if($store->whatsapp)
-                                    placeholder="{{ $store->whatsapp }}"
+                                    value="{{ $store->whatsapp }}"
                                 @else  
                                     placeholder="number"
                                 @endif 

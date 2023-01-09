@@ -122,14 +122,15 @@
                           </div>
                       @endforelse
                       @if(empty($items))
-                        <div class="mt-5">
-                          <p><strong>مجموع العربة: 500sr</strong></p>
-                          <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-info btn-lg btn-block">
-                              <i class="fa-solid fa-credit-card"></i> اتمام الشراء
-                          </button>
-                          </div>
+                      @else 
+                      <div class="mt-5">
+                        <p><strong>مجموع العربة: 500sr</strong></p>
+                        <div class="d-grid gap-2">
+                          <button type="button" class="btn btn-info btn-lg btn-block">
+                            <i class="fa-solid fa-credit-card"></i> اتمام الشراء
+                        </button>
                         </div>
+                      </div>
                       @endif
                     </div>
                   </div>

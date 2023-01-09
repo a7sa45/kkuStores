@@ -47,7 +47,7 @@
                             <div class="mb-3">
                                 <textarea id="discription"
                                 
-                                    placeholder="وصف المتجر"
+                                    placeholder="وصف المنتج"
                                 
                                 type="text" class="form-control @error('discription') is-invalid @enderror" name="discription" value="{{ old('discription') }}" required autocomplete="discription" autofocus>{{ $product->discription }}</textarea>
                                 @error('discription')

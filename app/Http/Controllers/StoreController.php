@@ -41,13 +41,15 @@ class StoreController extends Controller
 
     public function dashboard_index()
     {
-        return view('dashboard.index');
+        $products_count = Product::where('store_id', auth()->user()->store->id)->count();
+        return view('dashboard.index', ['products_count' => $products_count]);
     }
 
     public function dashboard_products()
     {
         //$store = Store::where('url', $url)->first();
         $products = Product::where('store_id', auth()->user()->store->id)->get();
+        $products_count = Product::where('store_id', auth()->user()->store->id)->count();
         return view('dashboard.products', ['products' => $products]);
     }
 
