@@ -81,13 +81,15 @@ class StoreController extends Controller
      */
     public function show($url)
     {
+        $cartcount = \Cart::session(auth()->user()->id)->getContent()->count();
+        $cartitems = \Cart::session(auth()->user()->id)->getContent();
         $store = Store::where('url', $url)->first();
         $products = Product::where('store_id', $store->id)->get();
         if($store == null)
         {
             abort(404);
         }
-        return view('stores.show', ['store' => $store, 'products' => $products]);
+        return view('stores.show', ['store' => $store, 'products' => $products, 'cartcount' => $cartcount, 'cartitems' => $cartitems]);
     }
 
     /**

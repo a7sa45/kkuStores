@@ -39,12 +39,11 @@
 @if(auth()->user()->store && auth()->user()->store->id == $store->id)
 @else
 @section('cart')
-<form class="d-flex">
-    <button class="btn btn-outline-dark" type="submit">
+
+    <a href="/home" class="btn btn-outline-dark" type="button">
         السلة
-        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ \Cart::session(auth()->user()->id)->getContent()->count() }}<i class="fa-solid fa-cart-shopping"></i></span>
-    </button>
-</form>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ $cartcount }}<i class="fa-solid fa-cart-shopping"></i></span>
+    </a>
 @endsection
 @endif
 @endauth
@@ -61,31 +60,29 @@
                 </div>
                 <p class="lead">{{ $product->discription }}</p>
                 @auth
-                    @if(\Cart::session(auth()->user()->id)->getContent()->where('id', $product->id))
+                    @if($cartitems->where('id', $product->id)->count())
                        هذا  المنتج موجود مسبقا 
+                    @else
+                        @if(auth()->user()->store && auth()->user()->store->id == $store->id)
+                        @else
+                        <form action="{{ route('cart.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" value="{{ $product->id }}" name="product_id">
+                            <div class="d-flex">
+                                <button type="submit" class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    إضـــافة للعربة
+                                </button>
+                            </div>
+                        </form>
+                        @endif
                     @endif
                 @else
                 <a href="{{ route('login') }}" class="btn btn-outline-warning flex-shrink-0" type="button">
                     <i class="bi-cart-fill me-1"></i>
                      قم بتسجيل الدخول لتتمكن من الشراء
                 </a>
-                @endauth
-                @auth
-                @if(auth()->user()->store && auth()->user()->store->id == $store->id)
-                @else
-                <form action="{{ route('cart.store') }}" method="POST">
-                    @csrf
-                    <input type="hidden" value="{{ $product->id }}" name="product_id">
-                    <div class="d-flex">
-                        <button type="submit" class="btn btn-outline-dark flex-shrink-0" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            إضـــافة للعربة
-                        </button>
-                    </div>
-                </form>
-                
                 @endif
-                @endauth
             </div>
         </div>
     </div>

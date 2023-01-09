@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Store;
 
 class CartController extends Controller
 {
@@ -27,7 +28,7 @@ class CartController extends Controller
             'associatedModel' => $product
         ));
         
-
+        session()->flash('success', 'تم إضافة المنتج الى العربة !');
         return redirect()->back();
     }
 
@@ -50,10 +51,11 @@ class CartController extends Controller
 
     public function removeCart(Request $request)
     {
-        \Cart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
+        //\Cart::remove($request->id);
+        \Cart::session(auth()->user()->id)->remove($request->id);
+        session()->flash('success', 'تم حذف المنتج من العربة !');
 
-        return redirect()->route('cart.list');
+        return redirect()->back();
     }
 
     public function clearAllCart()

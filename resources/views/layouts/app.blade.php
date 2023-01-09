@@ -87,8 +87,12 @@
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa-solid fa-circle-user fa-2xl"></i>
                                 </a>
-                                
+
                                 <div class="dropdown-menu dropdown-menu-end mb-1" style="text-align: right;" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        <i class="fas fa-id-badge"></i>
+                                        {{ Auth::user()->name }}
+                                    </a>
                                     <a class="dropdown-item" style="color: red" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -24,8 +24,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    { 
+    {
         $items = \Cart::session(auth()->user()->id)->getContent();
+        //dd($items);
         return view('home', ['items' => $items]);
     }
     public function allstores()
@@ -37,6 +38,11 @@ class HomeController extends Controller
     { 
         $products = Product::all();
         return view('allproducts', ['products' => $products]);
+    }
+    public function welcome()
+    { 
+        $stores = Store::offset(0)->limit(3)->get();
+        return view('welcome', ['stores' => $stores]);
     }
 
     
