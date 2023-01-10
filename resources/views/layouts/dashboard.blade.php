@@ -125,7 +125,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link
+            @if(Route::current()->getName() == 'dashboard_orders'))
+             active
+            @endif
+            " href="{{ route('dashboard_orders') }}">
               <span data-feather="file" class="align-text-bottom"></span>
               الطلبات
             </a>

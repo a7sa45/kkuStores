@@ -3,10 +3,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">المنتجات</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group me-2">
-      <button type="button" class="btn btn-sm btn-outline-secondary">مشاركة</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary">تصدير</button>
-    </div>
+    
     <a href="{{ route('create-product') }}" type="button" class="btn btn-sm btn-outline-secondary">
       <i class="fa-solid fa-circle-plus"></i>
       إضـــافة منتج
@@ -25,7 +22,7 @@
                       <img src="https://cdn-icons-png.flaticon.com/512/2523/2523206.png" class="img-fluid profile-image-pic  my-3" width="200px" alt="create">
                   </div>
                   <div class="card-body text-center">
-                      <h3>لاتوجد منتجات بعد</h3>
+                      <h3>لاتوجد طلبات بعد</h3>
                   </div>
               </div> 
           @endforelse
