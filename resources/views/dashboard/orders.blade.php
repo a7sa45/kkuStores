@@ -14,8 +14,26 @@
 <div class="row justify-content-center">
   <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#رقم الطلب</th>
+                <th scope="col">المتجر</th>
+                <th scope="col">المنتج</th>
+                <th scope="col">السعر</th>
+                <th scope="col">الحالة</th>
+              </tr>
+            </thead>
           @forelse ($order_details as $order_detail)
-              {{ $order_detail->id }}
+              
+                <tbody>
+                  <tr>
+                    <td>{{ $order_detail->id }}</td>
+                    <td>{{ $order_detail->store->title }}</td>
+                    <td>{{ $order_detail->product->name }}</td>
+                    <td>{{ $order_detail->product->price }}ر.س</td>
+                    <td>{{ $order_detail->order->status }}</td>
+                  </tr>
           @empty
               <div class=" card-body cardbody-color">
                   <div class="text-center">
@@ -26,7 +44,8 @@
                   </div>
               </div> 
           @endforelse
-          
+        </tbody>
+    </table>
 
           {{--<div class="col mb-5">
               <div class="card h-100">

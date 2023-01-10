@@ -32,11 +32,11 @@ class HomeController extends Controller
         $order = Order::where('user_id', auth()->user()->id)->first();
         //dd($order);
         if($order){
-            $order_details = Order_detail::where('user_id', auth()->user()->id)->get();
+            $order_details = Order_detail::with(['product','order'])->where('user_id', auth()->user()->id)->get();
         }else{
             $order_details = [];
         }
-        //dd($items);
+
         return view('home', ['items' => $items, 'order' => $order, 'order_details' => $order_details]);
     }
     public function allstores()

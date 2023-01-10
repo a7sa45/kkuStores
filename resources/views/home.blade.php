@@ -183,10 +183,10 @@
                     <a href="/store/{{ $order_detail->store->url }}/{{ $order_detail->product_id }}">{{ $order_detail->product_id }}</a>
                     </td>
                     <td class="px-6 py-4">
-                    {{ $order_detail->store->title }}
+                    {{ $order_detail->product->price }}ر.س
                     </td>
                     <td class="px-6 py-4">
-                    {{ $order_detail->order_id }}
+                    {{ $order_detail->order->status }}
                     </td>
                 </tr>
                 @empty
