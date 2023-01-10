@@ -17,7 +17,7 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['create', 'edit', 'dashboard_index']);
-        $this->middleware('hasstore')->only('dashboard');
+        $this->middleware('hasstore')->only('dashboard_index', 'dashboard_products');
     }
 
 
@@ -89,13 +89,18 @@ class StoreController extends Controller
      */
     public function show($url)
     {
-        $cartcount = \Cart::session(auth()->user()->id)->getContent()->count();
-        $cartitems = \Cart::session(auth()->user()->id)->getContent();
         $store = Store::where('url', $url)->first();
-        $products = Product::where('store_id', $store->id)->get();
         if($store == null)
         {
             abort(404);
+        }
+        $products = Product::where('store_id', $store->id)->get();
+        if(auth()->user()){
+            $cartcount = \Cart::session(auth()->user()->id)->getContent()->count();
+            $cartitems = \Cart::session(auth()->user()->id)->getContent();
+        }else{
+            $cartcount = [];
+            $cartitems = [];
         }
         return view('stores.show', ['store' => $store, 'products' => $products, 'cartcount' => $cartcount, 'cartitems' => $cartitems]);
     }

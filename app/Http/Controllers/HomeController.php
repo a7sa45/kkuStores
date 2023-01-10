@@ -52,7 +52,8 @@ class HomeController extends Controller
     public function welcome()
     { 
         $stores = Store::offset(0)->limit(3)->get();
-        return view('welcome', ['stores' => $stores]);
+        $products = Product::offset(0)->limit(3)->get();
+        return view('welcome', ['stores' => $stores, 'products' => $products]);
     }
 
     
