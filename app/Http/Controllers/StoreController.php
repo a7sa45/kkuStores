@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use App\Models\Product;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -51,6 +52,11 @@ class StoreController extends Controller
         $products = Product::where('store_id', auth()->user()->store->id)->get();
         $products_count = Product::where('store_id', auth()->user()->store->id)->count();
         return view('dashboard.products', ['products' => $products]);
+    }
+    public function dashboard_orders()
+    {
+        $order_details = Order_detail::where('store_id', auth()->user()->store->id)->get();
+        return view('dashboard.orders', ['order_details' => $order_details]);
     }
 
     /**

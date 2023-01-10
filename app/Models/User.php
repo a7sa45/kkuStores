@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Store::class);
     }
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function order_detail()
+    {
+        return $this->hasMany(Order_detail::class);
+    }
 }

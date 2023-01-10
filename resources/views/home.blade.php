@@ -102,7 +102,7 @@
                               قطعة واحدة
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                              <h5 class="mb-0">SR {{ $item->price }}</h5>
+                              <h5 class="mb-0">SR <span id="price">{{ $item->price }}</span></h5>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                               <form action="{{ route('cart.remove') }}" method="post">
@@ -121,14 +121,18 @@
                             <p>لاتوجد منتجات</p>
                           </div>
                       @endforelse
-                      @if(empty($items))
-                      @else 
+                 
+                      @if(count($items) > 0)
+
                       <div class="mt-5">
                         <p><strong>مجموع العربة: 500sr</strong></p>
                         <div class="d-grid gap-2">
-                          <button type="button" class="btn btn-info btn-lg btn-block">
-                            <i class="fa-solid fa-credit-card"></i> اتمام الشراء
-                        </button>
+                          <form action="{{ route('create.order') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-info btn-lg btn-block">
+                              <i class="fa-solid fa-credit-card"></i> اتمام الشراء
+                            </button>
+                          </form>
                         </div>
                       </div>
                       @endif
@@ -151,118 +155,17 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1,001</td>
-                            <td>بيانات</td>
-                            <td>عشوائية</td>
-                            <td>تثري</td>
-                            <td>الجدول</td>
-                          </tr>
-                          <tr>
-                            <td>1,002</td>
-                            <td>تثري</td>
-                            <td>مبهة</td>
-                            <td>تصميم</td>
-                            <td>تنسيق</td>
-                          </tr>
-                          <tr>
-                            <td>1,003</td>
-                            <td>عشوائية</td>
-                            <td>غنية</td>
-                            <td>قيمة</td>
-                            <td>مفيدة</td>
-                          </tr>
-                          <tr>
-                            <td>1,003</td>
-                            <td>معلومات</td>
-                            <td>تثري</td>
-                            <td>توضيحية</td>
-                            <td>عشوائية</td>
-                          </tr>
-                          <tr>
-                            <td>1,004</td>
-                            <td>الجدول</td>
-                            <td>بيانات</td>
-                            <td>تنسيق</td>
-                            <td>قيمة</td>
-                          </tr>
-                          <tr>
-                            <td>1,005</td>
-                            <td>قيمة</td>
-                            <td>مبهة</td>
-                            <td>الجدول</td>
-                            <td>تثري</td>
-                          </tr>
-                          <tr>
-                            <td>1,006</td>
-                            <td>قيمة</td>
-                            <td>توضيحية</td>
-                            <td>غنية</td>
-                            <td>عشوائية</td>
-                          </tr>
-                          <tr>
-                            <td>1,007</td>
-                            <td>تثري</td>
-                            <td>مفيدة</td>
-                            <td>معلومات</td>
-                            <td>مبهة</td>
-                          </tr>
-                          <tr>
-                            <td>1,008</td>
-                            <td>بيانات</td>
-                            <td>عشوائية</td>
-                            <td>تثري</td>
-                            <td>الجدول</td>
-                          </tr>
-                          <tr>
-                            <td>1,009</td>
-                            <td>تثري</td>
-                            <td>مبهة</td>
-                            <td>تصميم</td>
-                            <td>تنسيق</td>
-                          </tr>
-                          <tr>
-                            <td>1,010</td>
-                            <td>عشوائية</td>
-                            <td>غنية</td>
-                            <td>قيمة</td>
-                            <td>مفيدة</td>
-                          </tr>
-                          <tr>
-                            <td>1,011</td>
-                            <td>معلومات</td>
-                            <td>تثري</td>
-                            <td>توضيحية</td>
-                            <td>عشوائية</td>
-                          </tr>
-                          <tr>
-                            <td>1,012</td>
-                            <td>الجدول</td>
-                            <td>تثري</td>
-                            <td>تنسيق</td>
-                            <td>قيمة</td>
-                          </tr>
-                          <tr>
-                            <td>1,013</td>
-                            <td>قيمة</td>
-                            <td>مبهة</td>
-                            <td>الجدول</td>
-                            <td>تصميم</td>
-                          </tr>
-                          <tr>
-                            <td>1,014</td>
-                            <td>قيمة</td>
-                            <td>توضيحية</td>
-                            <td>غنية</td>
-                            <td>عشوائية</td>
-                          </tr>
-                          <tr>
-                            <td>1,015</td>
-                            <td>بيانات</td>
-                            <td>مفيدة</td>
-                            <td>معلومات</td>
-                            <td>الجدول</td>
-                          </tr>
+                          @forelse ($order_details as $order_detail)
+                            <tr>
+                              <td>{{ $order_detail->id }}</td>
+                              <td>{{ $order_detail->store->title }}</td>
+                              <td><a href="/store/{{ $order_detail->store->url }}/{{ $order_detail->product_id }}">{{ $order_detail->product_id }}</a></td>
+                              <td>{{ $order_detail->store->title }}</td>
+                              <td>{{ $order_detail->order_id }}</td>
+                            </tr>
+                          @empty
+                              
+                          @endforelse
                         </tbody>
                       </table>
                     </div>

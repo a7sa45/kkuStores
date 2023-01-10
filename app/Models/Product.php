@@ -13,4 +13,8 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class);
     }
+    public function order_detail()
+    {
+        return $this->belongsTo(Order_detail::class);
+    }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::controller(StoreController::class)->group(function () {
     //dashboard
     Route::get('/dashboard', 'dashboard_index')->name('dashboard');
     Route::get('/dashboard/products', 'dashboard_products')->name('dashboard_products');
+    Route::get('/dashboard/orders', 'dashboard_orders')->name('dashboard_orders');
 });
 
 //Product url
@@ -61,3 +63,7 @@ Route::controller(CartController::class)->group(function () {
     Route::post('clear', 'clearAllCart')->name('cart.clear');
 });
 
+//Order url
+Route::controller(OrderController::class)->group(function () {
+    Route::post('order', 'store')->name('create.order');
+});
