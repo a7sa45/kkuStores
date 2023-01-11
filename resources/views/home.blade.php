@@ -180,7 +180,7 @@
                     {{ $order_detail->store->title }}
                     </td>
                     <td class="px-6 py-4">
-                    <a href="/store/{{ $order_detail->store->url }}/{{ $order_detail->product_id }}">{{ $order_detail->product_id }}</a>
+                    <a href="/store/{{ $order_detail->store->url }}/{{ $order_detail->product_id }}">{{ $order_detail->product->name }}</a>
                     </td>
                     <td class="px-6 py-4">
                     {{ $order_detail->product->price }}ر.س
