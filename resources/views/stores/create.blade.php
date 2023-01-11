@@ -39,7 +39,7 @@
                     <label for="url" class="block text-sm mb-2">رابط المتجر</label>
                   </div>
                   <div class="relative">
-                    <input type="text" id="url" name="url" class="py-3 px-4 block w-full border-gray-200 @error('url') border-red-200 px-8 @enderror rounded-md text-sm focus:border-thir focus:ring-thir" required autocomplete="current-url">
+                    <input type="text" placeholder="https://stores.kku.edu.sa/store/yourUrl" id="url" name="url" class="py-3 px-4 block w-full border-gray-200 @error('url') border-red-200 px-8 @enderror rounded-md text-sm focus:border-thir focus:ring-thir" required autocomplete="current-url">
                     @error('url')
                     <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
                       <svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
