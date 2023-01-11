@@ -18,7 +18,7 @@
             <thead>
               <tr>
                 <th scope="col">#رقم الطلب</th>
-                <th scope="col">المتجر</th>
+                <th scope="col">العميل</th>
                 <th scope="col">المنتج</th>
                 <th scope="col">السعر</th>
                 <th scope="col">الحالة</th>
@@ -29,7 +29,7 @@
                 <tbody>
                   <tr>
                     <td>{{ $order_detail->id }}</td>
-                    <td>{{ $order_detail->store->title }}</td>
+                    <td>{{ $order_detail->user->name }}</td>
                     <td>{{ $order_detail->product->name }}</td>
                     <td>{{ $order_detail->product->price }}ر.س</td>
                     <td>{{ $order_detail->order->status }}</td>

@@ -73,8 +73,13 @@ class ProductController extends Controller
      */
     public function show(Product $product, $url,  $product_id)
     {
-        $cartcount = \Cart::session(auth()->user()->id)->getContent()->count();
-        $cartitems = \Cart::session(auth()->user()->id)->getContent();
+        if(auth()->user()){
+            $cartcount = \Cart::session(auth()->user()->id)->getContent()->count();
+            $cartitems = \Cart::session(auth()->user()->id)->getContent();
+        }else{
+            $cartcount = [];
+            $cartitems = [];
+        }
         $store = Store::where('url', $url)->first();
         $product = Product::where('id', $product_id)->first();
         $products = Product::where('store_id', $store->id)->limit(4)->get();

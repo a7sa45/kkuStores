@@ -144,24 +144,6 @@
               المنتجات
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users" class="align-text-bottom"></span>
-              الزبائن
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              التقارير
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers" class="align-text-bottom"></span>
-              التكاملات
-            </a>
-          </li>
         </ul>
 
         
