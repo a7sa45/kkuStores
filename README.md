@@ -1,12 +1,12 @@
 <p align="center"></p>
 
 <h1 align="center">
- FORK
+ KKU Stores
 </h1>
 
-## About Fork Team
+## About
 
-<p align="right">فريق برمجي مشارك في معسكر مهارات المستقبل بجامعة الملك خالد</p>
+<p align="right">kku bootcamp</p>
 <p align="right">
 
 
